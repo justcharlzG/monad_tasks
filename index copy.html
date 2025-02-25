@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CPZHBC26D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1CPZHBC26D');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monad测试网任务列表</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 40px;
+        }
+        h1 {
+            text-align: center;
+            color: #ff9900;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+        .task-container {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 20px;
+            justify-items: center;
+            grid-auto-rows: minmax(120px, auto);
+        }
+        .task {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            transition: transform 0.3s, background-color 0.3s;
+            text-decoration: none;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .task.checked {
+            background-color: #d3d3d3;
+            text-decoration: line-through;
+        }
+        .task.disabled {
+            background-color: #d3d3d3;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .task:hover:not(.disabled) {
+            background-color: #45a049;
+            transform: translateY(-5px);
+        }
+        .task .tip {
+            font-size: 0.9rem;
+            color: #201e1e;
+            opacity: 0.8;
+            margin-top: 8px;
+        }
+        @media (max-width: 1200px) {
+            .task-container {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+        @media (max-width: 900px) {
+            .task-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .task-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Monad测试网任务列表</h1>
+    <div class="task-container" id="task-list"></div>
+
+    <script>
+        const apiUrl = 'https://raw.githubusercontent.com/justcharlzG/monad_tasks/master/tasks.json';
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => initializeTasks(data))
+            .catch(error => {
+                console.error('Error loading tasks:', error);
+                document.getElementById('task-list').innerHTML = '<p style="color: red;">任务加载失败，请稍后再试。</p>';
+            });
+
+        function initializeTasks(tasks) {
+            shuffleArray(tasks);
+            const taskList = document.getElementById('task-list');
+            taskList.innerHTML = '';
+
+            tasks.forEach((task, index) => {
+                const taskDiv = document.createElement('a');
+                taskDiv.classList.add('task');
+                taskDiv.href = task.url;
+                taskDiv.target = "_blank";
+
+                const taskHTML = `
+                    ${index + 1}. ${task.name}
+                    ${task.tip ? `<div class="tip">${task.tip}</div>` : ''}
+                `;
+                taskDiv.innerHTML = taskHTML;
+                taskDiv.addEventListener('click', () => toggleTaskCompletion(taskDiv));
+                taskList.appendChild(taskDiv);
+            });
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function toggleTaskCompletion(taskDiv) {
+            if (taskDiv.classList.contains('disabled')) return;
+            taskDiv.classList.add('checked', 'disabled');
+        }
+    </script>
+</body>
+</html>
