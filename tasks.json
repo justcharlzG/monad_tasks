@@ -147,6 +147,12 @@
         "name": "layerhub看活跃度",
         "url": "https://layerhub.xyz/search?p=monad_testnet",
         "tip": "查看pua排名"
+    },
+    {
+        "name": "layer3任务",
+        "url": "https://app.layer3.xyz/campaigns/monad-ecosystem-campaign",
+        "tip": "只做任务 不mint layer3的垃圾奖励"
+        
     }
 
 ]
