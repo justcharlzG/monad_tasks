@@ -34,10 +34,6 @@
         "tip": "lite swap | pro 交易所"
     },
     {
-        "name": "Uni兑换",
-        "url": "https://app.uniswap.org/swap?chain=monad&inputCurrency=NATIVE&outputCurrency=0x0F0BDEbF0F83cD1EE3974779Bcb7315f9808c714&_brf=3fdeaa25-09bc-4e45-b112-7b702de8fedd&_bin=7eb237ec-7ab4-40e2-9c02-44387ed91b6d"
-    },
-    {
         "name": "Curvance借贷",
         "url": "https://app.curvance.com/"
     },
@@ -126,10 +122,6 @@
         "tip": "领水0.3/天 每日签到"
     },
     {
-        "name": "Alchemy的NFT",
-        "url": "https://magiceden.io/mint-terminal/monad-testnet/0x436ee7219bb099f71c9db9c7de8862a9bde891ae"
-    },
-    {
         "name": "Orbiter跨链",
         "url": "https://testnet.orbiter.finance/en?src_chain=11155111&tgt_chain=10143&src_token=ETH"
     },
@@ -153,6 +145,17 @@
         "url": "https://app.layer3.xyz/campaigns/monad-ecosystem-campaign",
         "tip": "只做任务 不mint layer3的垃圾奖励"
         
+    },
+    {
+        "name": "dirol swap",
+        "url": "https://dex.dirol.network/trade",
+        "tip": "swap"
+    },
+    {
+        "name": "rarebetsports游戏",
+        "url": "https://rarelink.rarebetsports.io/",
+        "tip": "充水玩游戏"
     }
+    
 
 ]
