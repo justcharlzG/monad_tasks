@@ -43,7 +43,7 @@
     },
     {
         "name": "bean swap",
-        "url": "https://swap.bean.exchange/liquidity",
+        "url": "https://swap.bean.exchange",
         "tip": "swap 添加流动性"
     },
     {
@@ -160,8 +160,10 @@
         "name": "townesquare",
         "url": "https://www.townesquare.xyz/onboard",
         "tip": "任务平台 可交互 邀请码 CM3LL"
+    },
+    {
+        "name": "https://app.timeswap.io/markets?chainId=10143",
+        "url": "https://app.timeswap.io/markets?chainId=10143",
+        "tip": "借贷，流动性"
     }
-    
-    
-
 ]
