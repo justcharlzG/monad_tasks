@@ -104,8 +104,9 @@
         "url": "https://testnet.lilchogstars.com/"
     },
     {
-        "name": "Me的NFT",
-        "url": "https://magiceden.io/launchpad/monad-testnet/emmy_on_monad"
+        "name": "magiceden",
+        "url": "https://magiceden.io/monad-testnet",
+        "tip": "交易 mint 竞价"
     },
     {
         "name": "Morkie的NFT",
