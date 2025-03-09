@@ -140,9 +140,11 @@
                     const link = document.createElement('a');
                     link.href = url;
                     link.target = "_blank";
-                    link.innerText = new URL(url).origin + new URL(url).pathname;
+                    let displayText = (url.length > 20) ? url.slice(0, 20) + "..." : url;
+                    link.innerText = displayText;
                     bucketDiv.appendChild(link);
                 });
+
                 bucketList.appendChild(bucketDiv);
             });
         }
