@@ -163,7 +163,7 @@
         "tip": "任务平台 可交互 邀请码 CM3LL"
     },
     {
-        "name": "https://app.timeswap.io/markets?chainId=10143",
+        "name": "timeswap",
         "url": "https://app.timeswap.io/markets?chainId=10143",
         "tip": "借贷，流动性"
     },
