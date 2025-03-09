@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CPZHBC26D"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -15,115 +14,136 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f7fc;
+            background-color: #ffffff;
             margin: 0;
-            padding: 40px;
+            padding: 20px;
         }
-        h1 {
-            text-align: center;
-            color: #ff9900;
-            font-size: 2rem;
-            margin-bottom: 40px;
+        h1, h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .task-container {
             display: grid;
-            grid-template-columns: repeat(8, 1fr);
-            gap: 20px;
-            justify-items: center;
-            grid-auto-rows: minmax(120px, auto);
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 8px;
+            margin-bottom: 30px;
         }
         .task {
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 1rem;
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 8px;
+            border-radius: 3px;
+            text-align: left;
+            font-size: 0.85rem;
             cursor: pointer;
-            width: 100%;
-            box-sizing: border-box;
-            transition: transform 0.3s, background-color 0.3s;
             text-decoration: none;
-            height: 120px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            border: 1px solid #ddd;
+        }
+        .task:hover {
+            background-color: #e0e0e0;
         }
         .task.checked {
             background-color: #d3d3d3;
             text-decoration: line-through;
         }
-        .task.disabled {
-            background-color: #d3d3d3;
-            cursor: not-allowed;
-            pointer-events: none;
+        .task-tip {
+            display: block;
+            font-size: 0.7rem;
+            color: #666;
+            margin-top: 3px;
         }
-        .task:hover:not(.disabled) {
-            background-color: #45a049;
-            transform: translateY(-5px);
+        .bucket-section {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
         }
-        .task .tip {
-            font-size: 0.9rem;
-            color: #201e1e;
-            opacity: 0.8;
-            margin-top: 8px;
+        .bucket-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
         }
-        @media (max-width: 1200px) {
-            .task-container {
-                grid-template-columns: repeat(6, 1fr);
-            }
+        .bucket-card {
+            background-color: #f8f9fa;
+            padding: 12px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
         }
-        @media (max-width: 900px) {
-            .task-container {
-                grid-template-columns: repeat(4, 1fr);
-            }
+        .bucket-card h3 {
+            margin: 0 0 8px 0;
+            color: #444;
+            font-size: 0.95rem;
         }
-        @media (max-width: 600px) {
-            .task-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .bucket-card a {
+            color: #0066cc;
+            text-decoration: none;
+            display: block;
+            margin: 4px 0;
+            font-size: 0.85rem;
+        }
+        .bucket-card a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <h1>Monad测试网任务列表</h1>
-    <div class="task-container" id="task-list"></div>
+    <div class="container">
+        <h1>Monad测试网任务列表</h1>
+        <div class="task-container" id="task-list"></div>
+        
+        <div class="bucket-section">
+            <h2>Bucket任务列表</h2>
+            <div class="bucket-container" id="bucket-list"></div>
+        </div>
+    </div>
 
     <script>
-        const apiUrl = 'https://raw.githubusercontent.com/justcharlzG/monad_tasks/master/tasks.json';
+        const taskApiUrl = 'https://raw.githubusercontent.com/justcharlzG/monad_tasks/master/tasks.json';
+        const bucketApiUrl = 'https://raw.githubusercontent.com/justcharlzG/monad_tasks/master/bucket.json';
 
-        fetch(apiUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
+        fetch(taskApiUrl)
+            .then(response => response.json())
             .then(data => initializeTasks(data))
-            .catch(error => {
-                console.error('Error loading tasks:', error);
-                document.getElementById('task-list').innerHTML = '<p style="color: red;">任务加载失败，请稍后再试。</p>';
-            });
+            .catch(error => console.error('Error loading tasks:', error));
+
+        fetch(bucketApiUrl)
+            .then(response => response.json())
+            .then(data => initializeBucketTasks(data))
+            .catch(error => console.error('Error loading bucket tasks:', error));
 
         function initializeTasks(tasks) {
             shuffleArray(tasks);
             const taskList = document.getElementById('task-list');
-            taskList.innerHTML = '';
-
             tasks.forEach((task, index) => {
                 const taskDiv = document.createElement('a');
                 taskDiv.classList.add('task');
                 taskDiv.href = task.url;
                 taskDiv.target = "_blank";
-
-                const taskHTML = `
+                taskDiv.innerHTML = `
                     ${index + 1}. ${task.name}
-                    ${task.tip ? `<div class="tip">${task.tip}</div>` : ''}
+                    <span class="task-tip">${task.tip || ''}</span>
                 `;
-                taskDiv.innerHTML = taskHTML;
                 taskDiv.addEventListener('click', () => toggleTaskCompletion(taskDiv));
                 taskList.appendChild(taskDiv);
+            });
+        }
+
+        function initializeBucketTasks(buckets) {
+            const bucketList = document.getElementById('bucket-list');
+            buckets.forEach(bucket => {
+                const bucketDiv = document.createElement('div');
+                bucketDiv.classList.add('bucket-card');
+                bucketDiv.innerHTML = `<h3>${bucket.name}</h3>`;
+                bucket.urls.forEach(url => {
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.target = "_blank";
+                    link.innerText = new URL(url).origin + new URL(url).pathname;
+                    bucketDiv.appendChild(link);
+                });
+                bucketList.appendChild(bucketDiv);
             });
         }
 
@@ -135,8 +155,7 @@
         }
 
         function toggleTaskCompletion(taskDiv) {
-            if (taskDiv.classList.contains('disabled')) return;
-            taskDiv.classList.add('checked', 'disabled');
+            taskDiv.classList.toggle('checked');
         }
     </script>
 </body>
