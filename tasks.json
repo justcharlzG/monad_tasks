@@ -171,6 +171,11 @@
         "name": "pancakeswap swap",
         "url": "https://pancakeswap.finance/?chain=monadTestnet&outputCurrency=0xfe140e1dCe99Be9F4F15d657CD9b7BF622270C50&inputCurrency=MON",
         "tip": "在设置中 切换测试网"
+    },
+    {
+        "name": "slogain",
+        "url": "https://monad.slogain.gg/profile",
+        "tip": "离线的 说话游戏"
 
     }
 ]
