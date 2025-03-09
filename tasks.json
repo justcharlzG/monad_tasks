@@ -100,8 +100,8 @@
         "url": "https://bebop.xyz/trade?network=monad&sell=MON&buy=WMON"
     },
     {
-        "name": "Chogstars mint NFT",
-        "url": "https://testnet.lilchogstars.com/"
+        "name": "画图提交",
+        "url": "https://www.moncave.xyz/cave-inside"
     },
     {
         "name": "magiceden",
@@ -173,9 +173,8 @@
         "tip": "在设置中 切换测试网"
     },
     {
-        "name": "slogain",
-        "url": "https://monad.slogain.gg/profile",
-        "tip": "离线的 说话游戏"
-
+        "name": "flap",
+        "url": "https://monad.flap.sh/0xedf0e155a5cf7ae54ce8a05d04250a581e1b579a",
+        "tip": "meme币 快速"
     }
 ]
