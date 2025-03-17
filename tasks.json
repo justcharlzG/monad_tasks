@@ -1,5 +1,11 @@
 [
     {
+        "name": "madness finance 全交互",
+        "url": "https://madness.finance/exp?ref=9M2GWD",
+        "tip": "后期大概率积分换代币",
+        "fix": true
+    },
+    {
         "name": "monad官方测试网",
         "url": "https://testnet.monad.xyz/",
         "tip": "官测"
@@ -13,11 +19,6 @@
         "name": "apr 质押",
         "url": "https://stake.apr.io/",
         "tip": "质押 领水"
-    },
-    {
-        "name": "gas.zip 领水",
-        "url": "https://www.gas.zip/faucet/monad",
-        "tip": "eth>0.013 可领水10次 总共2.5个"
     },
     {
         "name": "Ambient交易",
@@ -109,11 +110,6 @@
         "tip": "交易 mint 竞价"
     },
     {
-        "name": "Morkie的NFT",
-        "url": "https://morkie.xyz/monad",
-        "tip": "4个任务,点一下就行"
-    },
-    {
         "name": "Aicraft投票",
         "url": "https://aicraft.fun/projects/fizen?ref=ZJ9XR6S1UL"
     },
@@ -123,18 +119,9 @@
         "tip": "领水0.3/天 每日签到"
     },
     {
-        "name": "Orbiter跨链",
-        "url": "https://testnet.orbiter.finance/en?src_chain=11155111&tgt_chain=10143&src_token=ETH"
-    },
-    {
         "name": "Accountable游戏",
         "url": "https://game.accountable.capital/",
         "tip": "可以mint好几个"
-    },
-    {
-        "name": "monadverse",
-        "url": "https://www.monadverse.land/mint",
-        "tip": "限量 已结束"
     },
     {
         "name": "layerhub看活跃度",
@@ -168,13 +155,9 @@
         "tip": "借贷，流动性"
     },
     {
-        "name": "pancakeswap swap",
-        "url": "https://pancakeswap.finance/?chain=monadTestnet&outputCurrency=0xfe140e1dCe99Be9F4F15d657CD9b7BF622270C50&inputCurrency=MON",
-        "tip": "在设置中 切换测试网"
-    },
-    {
         "name": "flap",
         "url": "https://monad.flap.sh/0xedf0e155a5cf7ae54ce8a05d04250a581e1b579a",
         "tip": "meme币 快速"
     }
+    
 ]

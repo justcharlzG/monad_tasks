@@ -115,6 +115,14 @@
 
         function initializeTasks(tasks) {
             shuffleArray(tasks);
+
+            // 分离数据时兼容 fix 字段不存在的情况 
+            const fixedTasks = tasks.filter(task  => task.hasOwnProperty('fix')  && task.fix  === true);
+            const nonFixedTasks = tasks.filter(task  => !task.hasOwnProperty('fix')  || task.fix  === false);
+        
+            tasks = [...fixedTasks, ...nonFixedTasks];
+        
+
             const taskList = document.getElementById('task-list');
             tasks.forEach((task, index) => {
                 const taskDiv = document.createElement('a');
